@@ -1,0 +1,27 @@
+
+├─code				# 存放代码
+│  │  data_process.py			# 训练时数据处理
+│  │  infer.py			# 推理代码，和比赛提供一致
+│  │  torch2onnx.py			# torch模型转onnx
+│  │  train.py			# 模型训练(训练集分隔出部分验证集，决赛未采用)
+│  │  train_all.py			# 模型训练(全部数据用于训练)
+│  │  train_all_swa.py		# 额外训练若干轮用于SWA
+│  │  
+│  ├─loss				# 损失函数
+│  │  │  edgebce_dice_loss.py
+│  │          
+│  ├─nets				# 模型定义
+│  │  │  batchnorm.py
+│  │  │  comm.py
+│  │  │  ...
+│  │  │  
+│  │  ├─base
+│  │  ├─encoder       
+│  ├─utils				# 相关工具
+│  │  │  cal_acc.py			# 计算精度
+│  │  │  edge_utils.py		# 提取边界
+│  │  │  get_model_flops.py		# 计算模型参数量和运算量
+│  │  │  kmeans_copy_paste.py	# 数据增强
+│          
+├─data				# 存放训练数据
+└─model				# 保存训练好的模型

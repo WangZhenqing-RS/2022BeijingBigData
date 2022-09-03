@@ -1,0 +1,17 @@
+# 配置环境
+export PATH="/root/anaconda3/bin:$PATH"
+source ~/.bashrc
+source activate
+source deactivate
+conda activate pytorch
+
+# 训练
+cd project_huairou/code
+python train_all.py
+python train_all_swa.py 619 2 1 4 1e-5 ../model/mobileunet_scse_c16_d3_s619_alltrain_notest_kcpTrue.pth
+python torch2onnx.py 1 "../model/swa_s619_t1_n4_l1e-05.pth" "../model/seg.onnx"
+
+# 推理
+conda activate test
+python infer.py --test_data_dir="/root/project_huairou/test_data" --model_path="/root/project_huairou/model/seg.onnx" --output_dir="/root/project_huairou/test_output" --threshold=0.03
+
